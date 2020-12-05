@@ -35,8 +35,8 @@ packages:
 # These entries can reference officially published versions as well as
 # forks / in-progress versions pinned to a git hash. For example:
 #
-extra-deps:
- - wreq
+# extra-deps:
+#  - wreq
 #  -  statvfs-0.2
 # - acme-missiles-0.3
 # - git: https://github.com/commercialhaskell/stack.git
