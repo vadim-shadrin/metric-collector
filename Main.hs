@@ -18,8 +18,6 @@ main :: IO ()
 
 main = do
     etcd_url <- getEnv "ETCD_URL"
-    print  etcd_url
-    --response <-  httpJSON <- parseRequest  etcd_url
     url <- etcd_url ++  "/keys/message"
     initReq <- parseRequest  url
     response <-  httpJSON  initReq
