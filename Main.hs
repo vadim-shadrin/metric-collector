@@ -17,9 +17,15 @@ main :: IO ()
 
 main = do
     etcd_url <- getEnv "ETCD_URL"
+<<<<<<< HEAD
     print  etcd_url
     initReq <- parseRequest (etcd_url ++ "/keys/message")
     response <- httpJSON initReq
+=======
+    url <- etcd_url ++  "/keys/message"
+    initReq <- parseRequest  url
+    response <-  httpJSON  initReq
+>>>>>>> 03be5811089d5f389ba1f2a77a6c33073953ba5a
     putStrLn $ "The status code was: " ++ show (getResponseStatusCode response)
     print $ getResponseHeader "Content-Type" response
     S8.putStrLn $ Yaml.encode (getResponseBody response :: Value)
