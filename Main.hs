@@ -1,5 +1,28 @@
-import Network.Wreq
+{-# LANGUAGE OverloadedStrings #-}
+import System.Environment (getEnv)
+import Data.Aeson (Value)
+import Data.String()
+import qualified Data.ByteString.Char8 as S8
+import qualified Data.Yaml as Yaml
+--import Text.Printf(printf)
+import Network.HTTP.Simple
+    ( getResponseBody,
+      getResponseHeader,
+      getResponseStatusCode,
+      httpJSON,
+      parseRequest
+       )
+
 main :: IO ()
+
+
 main = do
-   --putStrLn $ "Hello World"
-   r <- get "api.skylove.su/v1/users/likes_photos"
+    etcd_url <- getEnv "ETCD_URL"
+    print  etcd_url
+    --response <-  httpJSON <- parseRequest  etcd_url
+    url <- etcd_url ++  "/keys/message"
+    initReq <- parseRequest  url
+    response <-  httpJSON  initReq
+    putStrLn $ "The status code was: " ++ show (getResponseStatusCode response)
+    print $ getResponseHeader "Content-Type" response
+    S8.putStrLn $ Yaml.encode (getResponseBody response :: Value)

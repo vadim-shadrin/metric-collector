@@ -8,7 +8,11 @@ library
 executable metric-collector
     build-depends:
        base,
-       wreq
+       http-client,
+       aeson,
+       yaml,
+       http-conduit,
+       bytestring
     default-language: Haskell2010
     main-is: Main.hs
 
